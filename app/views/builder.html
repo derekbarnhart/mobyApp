@@ -1,10 +1,6 @@
-<div class = "row">
-	 
-<div ng-include src="'data/widgetMarkup.html'"></div>
-<div ng-include src="'data/scriptMarkup.html'"></div>
-	 
+<div class = "row">	 
 	 <div class = "span12">
-	 	<div>
+	 	<div ng-show="false">
 			<select ui-select2 ng-model="framework" ng-change="onFrameworkChange()" data-placeholder="-- Select Framework --" style="width:200px">
 		    		<option></option>
 		    		<option ng-repeat="item in frameworks" value="{{item.template}}" >{{item.name}}</option>
@@ -34,7 +30,8 @@
 	 	</div>	
 		</li>
 		</ul>
-		<div id="content" style="visibility:hidden;" ng-bind-html-unsafe="formHtml"></div>		
+		<div id="content" style="visibility:hidden;" ng-bind-html-unsafe="updateHtml()"></div>		
+		
 	</div>
 				
 	 <div class = "span6">
@@ -45,9 +42,11 @@
 		    		<option ng-repeat="item in themes" value="{{item.path}}" >{{item.name}}</option>
 		</select>
 		
-		<div><iframe id="1" style="width: 320px; height: 481px; border: 0;" src="mobileSimulator.html"></iframe></div>
+		<div><iframe id="1" style="width: 320px; height: 481px; border: 0;" src="/ws/apptemplate"></iframe></div>
 		<textarea id="textInput"></textarea>	
 		<button onclick="put()">Add</button>
+		
+		<button class="btn btn-warning cancel" ng-click="saveForm()">Save Form</button>
 	</div>
 	
 	<script>
@@ -81,4 +80,7 @@
 		
 		
 	</script>
+<div ng-include src="'data/widgetMarkup.html'"></div>
+<div ng-include src="'data/scriptMarkup.html'"></div>
+
 </div>

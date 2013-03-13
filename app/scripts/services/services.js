@@ -37,6 +37,24 @@ angular.module('builderServices', ['ngResource']).
     put: {method:'POST'},
     "delete": {method:'GET'}
   });
+}).
+    factory('App', function($resource){
+  return $resource('ws/app', {}, {
+            
+    get: {method:'GET', isArray:true},
+    post: {method:'POST'},
+    put: {method:'POST'},
+    "delete": {method:'GET'}
+  });
+}).
+    factory('Template', function($resource){
+  return $resource('data/apptemplates/mobileSimulator.html', {}, {
+            
+    get: {method:'GET'},
+    post: {method:'POST'},
+    put: {method:'POST'},
+    "delete": {method:'GET'}
+  });
 });
 
 /*

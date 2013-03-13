@@ -1,6 +1,6 @@
 'use strict';
 
-yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Theme) {
+yeoAngApp.controller('BuilderCtrl', function($scope,$http,DataType,Widget,Framework,Theme,App) {
   //property declarations
   $scope.widgetMarkup = null;
   $scope.dataTypes = null;
@@ -30,6 +30,19 @@ yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Th
   Theme.get({},function(themes){
            $scope.themes = themes;
   });
+
+  
+  $http({method: 'GET', url: '/data/apptemplates/mobileSimulator.html'}).
+  success(function(data, status, headers, config) {
+    // this callback will be called asynchronously
+    // when the response is available
+           $scope.templateHTML = data;
+  }).
+  error(function(data, status, headers, config) {
+        console.log("Error ");
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
   
   $scope.$on('itemUpdated',function(event,item){
      console.log('Item Updated Called');
@@ -38,9 +51,9 @@ yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Th
   });
   
   $scope.onFrameworkChange = function(){     
-      console.log('onFrameworkChange');
-      var element = $("#1");
-      element.attr('src',$scope.framework);    
+      //console.log('onFrameworkChange');
+      //var element = $("#1");
+      //element.attr('src',$scope.framework);    
   }
   
   $scope.onThemeChange = function(){     
@@ -48,6 +61,19 @@ yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Th
       if($scope.theme){
         var element = document.getElementById('1').contentWindow.dstyle.add($scope.theme,'css');
       } 
+  }
+  
+  $scope.saveForm = function(){
+
+      var source = $scope.templateHTML;
+      var template = Handlebars.compile(source);
+      var newApp = App();
+      var postData = {
+          html:_.unescape(template({content1:$scope.updateHtml()}))
+          };
+debugger
+      App.save({},postData);
+      
   }
   
   function loadTemplate(element,isAdmin){
@@ -131,29 +157,31 @@ yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Th
       for(var widget in $scope.widgets){
           markup.push($scope.widgets[widget].markup);
       }
-      $scope.formHtml = markup.join("");
-  };  
+      return  markup.join("");
+  };
+   
   
   //Event handling
    $scope.$on('listchange', function() {
     buildValidationScript();
     setTimeout(function(){
         $scope.updateHtml();
-        setTimeout(function(){$scope.put();},200);
-        
+        setTimeout(function(){$scope.put();},200);   
         },200); 
+    
     });
    
   $scope.update = function(){
-     $scope.$emit('listchange');  
+      var temp = $scope.widgets;
+      //$scope.widgets.
+     //$scope.$emit('listchange');  
   }
   
   //Item creation
    $scope.removeItem = function(index){
       var toDelete = $scope.widgets[index];
     $scope.widgets.splice(index,1);
- 
-    $scope.$emit('listchange');
+   // $scope.$emit('listchange');
   };
   
   $scope.addItem = function(){     
@@ -166,7 +194,10 @@ yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Th
           require:false,
           validate:true,
           maxMin:$scope.validationOptions.hasOwnProperty(dataType.type) ? $scope.validationOptions[dataType.type].hasOwnProperty('hasMax') : false ,
-          elementId : dataType.ui+$scope.id
+          elementId : dataType.ui+$scope.id,
+          label:true,
+          placeholder:true
+      
       };
       
       $scope.widgets.push({
@@ -182,8 +213,8 @@ yeoAngApp.controller('BuilderCtrl', function($scope,DataType,Widget,Framework,Th
 }
 
         $scope.changeContent = function(content){
-            document.getElementById('1').contentWindow.jQuery('#content').html(content);
-            document.getElementById('1').contentWindow.jQuery('#content').trigger( "create" );     
+            document.getElementById('1').contentWindow.jQuery('#form').html(content);
+            document.getElementById('1').contentWindow.jQuery('#form').trigger( "create" );     
         }
         
         $scope.put =function(){
