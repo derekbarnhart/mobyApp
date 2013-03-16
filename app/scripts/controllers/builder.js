@@ -69,7 +69,10 @@ yeoAngApp.controller('BuilderCtrl', function($scope,$http,DataType,Widget,Framew
       var template = Handlebars.compile(source);
       var newApp = App();
       var postData = {
-          html:_.unescape(template({content1:$scope.updateHtml()}))
+          html:_.unescape(template({
+              content1:$scope.updateHtml(),
+              scripts:$scope.javascript
+              }))
           };
 debugger
       App.save({},postData);
@@ -187,14 +190,13 @@ debugger
   $scope.addItem = function(){     
 
       var dataType = getDataType($scope.selectedWidgetType);
-
       //Standard initial config for and element
       var data = {
           title:dataType.name,
           require:false,
           validate:true,
           maxMin:$scope.validationOptions.hasOwnProperty(dataType.type) ? $scope.validationOptions[dataType.type].hasOwnProperty('hasMax') : false ,
-          elementId : dataType.ui+$scope.id,
+          elementId : _.uniqueId(dataType.ui+'_'),
           label:true,
           placeholder:true
       
@@ -251,6 +253,7 @@ function buildValidationScript(){
         }
     }
     var script = template({item:list});
+   $scope.javascript = "<script>$('#form').validate();</script>";
    injectScript(script); 
     console.log(script);
 };

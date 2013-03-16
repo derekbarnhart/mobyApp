@@ -56,16 +56,3 @@ angular.module('builderServices', ['ngResource']).
     "delete": {method:'GET'}
   });
 });
-
-/*
-angular.module('widgetServices', ['ngResource']).
-    factory('Widget', function($resource){
-  return $resource('data/widgets.json', {}, {
-            
-    get: {method:'GET'},
-    post: {method:'POST'},
-    put: {method:'POST'},
-    "delete": {method:'GET'}
-  });
-}); */
-
