@@ -1,5 +1,13 @@
 <div class = "row">	 
 	 <div class = "span12">
+	 	<div>
+	 		<input ng-show="editMode" ui-keypress="{enter: 'editMode=false;'}" dbBlur="alert('Blur')" ng-model="appTitle" type="text"/>
+	 		<h1 ng-show="!editMode" ng-click="editMode=true;">{{appTitle}}</h1>
+	 	<button class="btn btn-primary cancel pull-right" ng-click="saveForm()" style="margin-bottom:30px;">Save Form</button>
+	 	
+	 	</div>
+	 	
+	 
 	 	<div ng-show="false">
 			<select ui-select2 ng-model="framework" ng-change="onFrameworkChange()" data-placeholder="-- Select Framework --" style="width:200px">
 		    		<option></option>
@@ -8,22 +16,26 @@
 		</div>
 	 </div> 
 	
-	 <div class = "span6"> 
-		<div>
-			<select ui-select2="{placeholder: 'Widget Type',allowClear: true}" ng-model="selectedWidgetType"  style="width:200px">
-		    		<option></option>
-		    		<option ng-repeat="dataType in dataTypes" value="{{dataType.code}}" >{{dataType.name}}</option>
-		  	</select>	
-	  		 <button class="btn btn-primary addButton" type="button" ng-click="addItem();">Add</button>
-		</div>	
+	 <div class = "span6"> 	
+		<div class = "appOptions">
+			<label class="checkbox">
+		      <input type="checkbox" ng-model="header"> Show Header
+		    </label>
+	    </div>
+		<div ng-include="'/views/templates/buttonToolbar.html'"></div>	
 		<ul ui:sortable="{update:update}" ng-model="widgets">
-		<li ng-repeat="widget in widgets">
+		<li ng-repeat="widget in widgets" ui-animate="{{widget}}">
 			<div class="well well-small element" ><!--background:{{widget.color}};-->
 			 <div class="row">	 		 
 				 	<div class= "span6"> 		
-				 		<h4>{{widget.data.title}}</h4>				 		
-				 			<button class="btn pull-right" ng-click="removeItem($index)"><i class="icon-remove-sign"></i>Remove</button>
-    							<button class="btn pull-right" ng-click="open(widget)"><i class="icon-wrench"></i>Edit</button>
+				 			<div class="pull-left">
+				 			<i class=" pull-left {{listItemMarkup[widget.dataType.group].icon}} itemBadge icon-white {{listItemMarkup[widget.dataType.group].color}}" ></i>
+				 			<h4 class="listItemTitle">{{widget.data.title}}</h4>
+				 			</div>
+				 			<div class="pull-right" style="margin-right:40px">		 				
+				 				<button class="btn btn-link pull-right" ng-click="removeItem($index)"><i class="icon-remove-sign"></i>Remove</button>
+    								<button class="btn btn-link pull-right" ng-click="open(widget)"><i class="icon-wrench"></i>Edit</button>
+    							</div>
 					    <div ng-include="'views/templates/itemEditModal.html'"></div>
 				 	</div>		 			   
 			 </div>
@@ -36,17 +48,8 @@
 				
 	 <div class = "span6">
 		<!-- <textarea>{{json()}}</textarea> -->
-			 <!-- Maybe use hammer.js to track touch movements -->
-		<select ui-select2 ng-model="theme" ng-change="onThemeChange()" data-placeholder="-- Pick a theme --" style="width:200px">
-		    		<option></option>
-		    		<option ng-repeat="item in themes" value="{{item.path}}" >{{item.name}}</option>
-		</select>
-		
-		<div><iframe id="1" style="width: 320px; height: 481px; border: 0;" src="/ws/apptemplate"></iframe></div>
-		<textarea id="textInput"></textarea>	
-		<button onclick="put()">Add</button>
-		
-		<button class="btn btn-warning cancel" ng-click="saveForm()">Save Form</button>
+			 <!-- Maybe use hammer.js to track touch movements -->		
+		<div class="appFrame"><iframe id="1" class="demoScreen" src="/ws/apptemplate"></iframe></div>
 	</div>
 	
 	<script>

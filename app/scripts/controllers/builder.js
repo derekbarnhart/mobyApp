@@ -12,8 +12,16 @@ yeoAngApp.controller('BuilderCtrl', function($scope,$http,DataType,Widget,Framew
   
   $scope.templates = null;
   $scope.formHtml = null;
-  /////Modal
   
+  $scope.appTitle = "App Title"; 
+  
+  /////Modal
+  $scope.listItemMarkup={
+      input:{icon:'icon-pencil',color:'blue',tooltip:'Great for names, emails, phone numbers or anywhere typing is needed.'},
+      select:{icon:'icon-th-list',color:'red',tooltip:'Best for selecting items from a list. Only requires a few screen taps.'},
+      option:{icon:'icon-hand-up',color:'orange',tooltip:'Includes radio buttons and check boxes. Suited for toggle options.'},
+      date:{icon:'icon-calendar',color:'green',tooltip:'Need to set a date or time? This is what you want.'},
+  }
   //Get a listing of the data types availible
   DataType.get({},function(dataTypes){
            $scope.dataTypes = dataTypes; 
@@ -74,7 +82,6 @@ yeoAngApp.controller('BuilderCtrl', function($scope,$http,DataType,Widget,Framew
               scripts:$scope.javascript
               }))
           };
-debugger
       App.save({},postData);
       
   }
@@ -96,8 +103,7 @@ debugger
     return renderElement(widget.dataType.ui,widget.data);
   }
  
-  function renderElement(element,context,isAdmin){
-    
+  function renderElement(element,context,isAdmin){  
       var config = context || {};
       var index = isAdmin ? "_admin_"+element: element;
       
@@ -187,10 +193,26 @@ debugger
    // $scope.$emit('listchange');
   };
   
-  $scope.addItem = function(){     
+  
+  
+  $scope.addItem = function(itemType){     
 
-      var dataType = getDataType($scope.selectedWidgetType);
-      //Standard initial config for and element
+function getDataTypeByGroup(groupName){
+   return _.find($scope.dataTypes, function(dataType){
+        if(dataType.hasOwnProperty('group')){
+            if(dataType.group == groupName){
+                return dataType    
+            }
+        }
+    })   
+}
+    
+    
+    var dataType = getDataTypeByGroup(itemType);
+    
+      
+      
+   //Standard initial config for and element
       var data = {
           title:dataType.name,
           require:false,

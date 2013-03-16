@@ -1,18 +1,18 @@
 [
-	{"name":"Select Box", "category":"Name", "ui":"combo", "type":"string", "code":"1001"},
-	{"name":"Check Box", "category":"Name", "ui":"textbox", "type":"string", "code":"1002"},
-	{"name":"Radio", "category":"Name", "ui":"textbox", "type":"string", "code":"1003"},
+	{"name":"Select Box", "category":"Name", "ui":"combo", "type":"string","group":"select", "code":"1001"},
+	{"name":"Check Box", "category":"Name", "ui":"textbox", "type":"string","group":"option", "code":"1002"},
+	{"name":"Radio", "category":"Name", "ui":"textbox", "type":"string","group":"option", "code":"1003"},
 	
-	{"name":"Number", "category":"Name", "ui":"textbox", "type":"int", "code":"1010"},
-	{"name":"Date", "category":"Name", "ui":"datepicker", "type":"date", "code":"1012"},
-	{"name":"Time", "category":"Name", "ui":"timepicker", "type":"time", "code":"1013"},
+	{"name":"Number", "category":"Name", "ui":"textbox", "type":"int","group":"input", "code":"1010"},
+	{"name":"Date", "category":"Name", "ui":"datepicker", "type":"date","group":"date", "code":"1012"},
+	{"name":"Time", "category":"Name", "ui":"timepicker", "type":"time","group":"time", "code":"1013"},
 
-	{"name":"Text", "category":"Name", "ui":"textbox", "type":"string", "code":"1004"},
-	{"name":"Text Area", "category":"Name", "ui":"textbox", "type":"string", "code":"1005"},
-    {"name":"Phone", "category":"Name", "ui":"combo", "type":"phone", "code":"1006"},
-	{"name":"Email", "category":"Name", "ui":"textbox", "type":"email", "code":"1007"},
-	{"name":"Url", "category":"Name", "ui":"textbox", "type":"url", "code":"1008"},
-	{"name":"Credit Card", "category":"Name", "ui":"textbox", "type":"creditcard", "code":"1009"},
+	{"name":"Text", "category":"Name", "ui":"textbox", "type":"string", "group":"input", "code":"1004"},
+	{"name":"Text Area", "category":"Name", "ui":"textbox", "type":"string", "group":"input", "code":"1005"},
+    {"name":"Phone", "category":"Name", "ui":"combo", "type":"phone","group":"input", "code":"1006"},
+	{"name":"Email", "category":"Name", "ui":"textbox", "type":"email", "group":"input","code":"1007"},
+	{"name":"Url", "category":"Name", "ui":"textbox", "type":"url","group":"input", "code":"1008"},
+	{"name":"Credit Card", "category":"Name", "ui":"textbox", "type":"creditcard","group":"input", "code":"1009"},
 	
 	{"name":"Submit Button", "category":"Name", "ui":"submit","code":"submit", "type":"submit", "code":"1014"}
 ]

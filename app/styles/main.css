@@ -1,20 +1,91 @@
   ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
-  li {}
+	  li {
+	  transition: all 0.5s ease;
+	  -o-transition: all 0.5s ease;
+	  -moz-transition: all 0.5s ease;
+	  -webkit-transition: all 0.5s ease;
+	  
+	  max-height: 50px; /* 1000px works too */
+	  overflow: hidden;
+	  padding: 5px;
+	}
+	/* The 'hidden' state to transition from & to */
+	li.ui-animate {
+	  opacity: 0;
+	  max-height: 0;
+	  padding: 0 5px;
+	}
+
+i {margin-right:5px;}	
   div .accordion {margin-top: 0px; margin-bottom: 0px; }
   .element-old {background: #8fafff;border:5px solid #3b3b3b; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px;margin-bottom:5px; margin-top:5px}
   
   .element h3,h2,h1,h4 {display:inline;}
   .element a {float:right; display:inline;padding-right:0px;padding-top:-30px;}
   
-  div .demo {
-  	background: #fff;
-  	border:10px solid #3b3b3b; 
-  	border-radius:10px; 
-  	-moz-border-radius:10px; 
-  	-webkit-border-radius:10px;
-  	margin-bottom:5px; 
-  	margin-top:5px;
-  	overflow:scroll;
-  	}
-
+	.itemBadge {
+		background-color:#006dcc;
+		border:5px solid #006dcc;
+		border-radius:20px; 
+  		-moz-border-radius:20px; 
+  		-webkit-border-radius:20px;
+  		text-align:center;
+  		margin-left: auto;
+    		margin-right: auto;		
+		box-shadow:3px 3px 5px #888888;
+	}
+	
+	.blue {background-color:#006dcc; border-color:#006dcc;}
+	.red {background-color: #da4f49; border-color:#da4f49;}
+	.orange {background-color: #faa732; border-color:#faa732;}	
+	.green {background-color: #5bb75b; border-color:#5bb75b;}
+	
   .main-container { margin-top:45px; }
+
+.appOptions { margin-top:10px;}
+
+.demoScreen {
+	width: 320px; 
+  	height: 481px;
+  	margin-right:auto; margin-left:auto;
+  	}
+  	
+ .listItemTitle{
+ 	margin-left:10px;
+ }
+ .demoScreen {
+ 
+  	width: 320px; 
+  	height: 481px;
+  	margin-right:auto; margin-left:auto; 
+  	text-align:center;
+  	
+  	box-shadow:50px 50px 50px #888888;
+  	
+  	
+  	border-radius:20px; 
+  	-moz-border-radius:20px; 
+  	-webkit-border-radius:20px;
+  	margin-left:25px; 
+  	margin-right:25px;
+  	overflow:hidden;
+  	
+  	padding:30px;
+  	padding-top:40px;
+  	padding-bottom:50px;
+  	
+  	
+background: #4c4c4c; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #000000 51%, #111111 60%, #2b2b2b 76%, #1c1c1c 91%, #131313 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#4c4c4c), color-stop(12%,#595959), color-stop(25%,#666666), color-stop(39%,#474747), color-stop(50%,#2c2c2c), color-stop(51%,#000000), color-stop(60%,#111111), color-stop(76%,#2b2b2b), color-stop(91%,#1c1c1c), color-stop(100%,#131313)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* IE10+ */
+background: linear-gradient(135deg, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  	
+  	
+  	
+  	
+  	}
